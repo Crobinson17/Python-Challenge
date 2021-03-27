@@ -1,11 +1,11 @@
 import csv
 import os
 
-#path to collect data
+#Data Path
 csvpath = os.path.join("Python_budget_data.csv")
 csvpath_output = ("Python_budget_data.txt")
 
-# Variables to Track
+# Variables 
 total_months = 0
 total_profit_loss = 0
 
@@ -20,7 +20,7 @@ profit_loss_changes = []
 with open(csvpath) as csvfile:
     reader = csv.DictReader(csvfile)
 
-    #loop through rows and add up the total months and profit losses 
+    #Add up the total months and profit losses 
     for row in reader:
 
         
@@ -36,7 +36,7 @@ with open(csvpath) as csvfile:
         prev_profit_loss = int(row["Profit/Losses"])
         print(prev_profit_loss)
 
-        # Determine the greatest increase
+        # Greatest increase
         if (profit_loss_change > greatest_increase[1]):
             greatest_increase[1] = profit_loss_change
             greatest_increase[0] = row["Date"]
@@ -45,10 +45,21 @@ with open(csvpath) as csvfile:
             greatest_decrease[1] = profit_loss_change
             greatest_decrease[0] = row["Date"]
 
-        # Add to the profit_loss_changes list
+        # Profit loss changes list
         profit_loss_changes.append(int(row["Profit/Losses"]))
 
-    # create the profit loss average
+    # Profit loss average
     profit_loss_avg = sum(profit_loss_changes) / len(profit_loss_changes)
+    
+    #Output
+    print("Finacial Analysis")
+    print("-------------------------")
+    print("Total Months: " + str(total_months))
+    print("Total : " + "$" + str(total_profit_loss))
+    print("Average Change: " + "$" + str(round(sum(profit_loss_changes) / len(profit_loss_changes),2)))
+    print("Greatest Increase: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
+    print("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
+    
+    
     
     
