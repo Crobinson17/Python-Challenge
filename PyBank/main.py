@@ -51,7 +51,7 @@ with open(csvpath) as csvfile:
     # Profit loss average
     profit_loss_avg = sum(profit_loss_changes) / len(profit_loss_changes)
     
-    #Output
+    #The Output and files
     print("Finacial Analysis")
     print("-------------------------")
     print("Total Months: " + str(total_months))
@@ -60,6 +60,15 @@ with open(csvpath) as csvfile:
     print("Greatest Increase: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
     print("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
     
-    
+    with open(csvpath_output, "w") as txt_file:
+    txt_file.write("Total Months: " + str(total_months))
+    txt_file.write("\n")
+    txt_file.write("Average Change: " + "$" + str(round(sum(profit_loss_changes) / len(profit_loss_changes),2)))
+    txt_file.write("\n")
+    txt_file.write("Total: " + "$" + str(total_profit_loss))
+    txt_file.write("\n")
+    txt_file.write("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" + str(greatest_decrease[1]) + ")")
+txt_file.write("Greatest Increase: " + str(greatest_increase[0]) + " ($" + str(greatest_increase[1]) + ")") 
+    txt_file.write("\n")
     
     
